@@ -1,10 +1,10 @@
 from django.urls import path
 
-from catalog.views import index, literary_format_list_view
+from catalog.views import index, LiteraryFormatListView
 
 urlpatterns = [
     path("", index, name="index"),
-    path("literary-formats/", literary_format_list_view, name="literary-format-list"),
+    path("literary-formats/", LiteraryFormatListView.as_view(), name="literary-format-list"),
 ]
 
 app_name = "catalog"

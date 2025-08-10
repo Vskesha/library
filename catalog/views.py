@@ -1,7 +1,6 @@
-import datetime
-
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
+from django.views import generic
 
 from .models import Author, Book, LiteraryFormat
 
@@ -17,9 +16,10 @@ def index(request: HttpRequest) -> HttpResponse:
     }
     return render(request, "catalog/index.html", context=context)
 
-def literary_format_list_view(request: HttpRequest) -> HttpResponse:
-    literary_format_list = LiteraryFormat.objects.all()
-    context = {
-        "literary_format_list": literary_format_list,
-    }
-    return render(request, "catalog/literary_format_list.html", context=context)
+
+class LiteraryFormatListView(generic.ListView):
+    model = LiteraryFormat
+    template_name = "catalog/literary_format_list.html"
+    context_object_name = "literary_format_list"
+
+
