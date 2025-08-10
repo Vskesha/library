@@ -23,3 +23,9 @@ class LiteraryFormatListView(generic.ListView):
     context_object_name = "literary_format_list"
 
 
+class BookListView(generic.ListView):
+    model = Book
+
+
+class AuthorListView(generic.ListView):
+    model = Author
