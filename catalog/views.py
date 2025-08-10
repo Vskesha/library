@@ -16,3 +16,10 @@ def index(request: HttpRequest) -> HttpResponse:
         "num_literary_formats": num_literary_formats,
     }
     return render(request, "catalog/index.html", context=context)
+
+def literary_format_list_view(request: HttpRequest) -> HttpResponse:
+    literary_format_list = LiteraryFormat.objects.all()
+    context = {
+        "literary_format_list": literary_format_list,
+    }
+    return render(request, "catalog/literary_format_list.html", context=context)
