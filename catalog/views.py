@@ -1,4 +1,4 @@
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpRequest, HttpResponse, Http404
 from django.shortcuts import render
 from django.views import generic
 
@@ -25,7 +25,13 @@ class LiteraryFormatListView(generic.ListView):
 
 class BookListView(generic.ListView):
     model = Book
+    queryset = Book.objects.select_related("format")
+    paginate_by = 10
 
 
 class AuthorListView(generic.ListView):
     model = Author
+
+
+class BookDetailView(generic.DetailView):
+    model = Book
