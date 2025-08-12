@@ -9,7 +9,8 @@
     {% for author in book.authors.all %}
       <hr>
       <p class="text-muted">{{ author.id }}</p>
-      <p>{{ author.first_name }} {{ author.last_name }}
+      <p><a href="{{ author.get_absolute_url }}">{{ author.first_name }} {{ author.last_name }}</a></p>
+      <p>
       {% if author.pseudonym %}
         {{ author.pseudonym }}
       {% endif %}

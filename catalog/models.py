@@ -23,6 +23,10 @@ class Author(AbstractUser):
     def __str__(self):
         return f"{self.username}: ({self.first_name} {self.last_name})"
 
+    def get_absolute_url(self):
+        return reverse("catalog:author-detail", args=[str(self.id)])
+
+
 class Book(models.Model):
     title = models.CharField(max_length=255)
     price = models.DecimalField(max_digits=7, decimal_places=2)
