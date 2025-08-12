@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
@@ -23,3 +23,8 @@ def login_view(request: HttpRequest) -> HttpResponse:
                 "accounts/login.html",
                 context=error_context
             )
+
+
+def logout_view(request: HttpRequest) -> HttpResponse:
+    logout(request)
+    return render(request, "accounts/logged_out.html")
