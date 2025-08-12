@@ -1,7 +1,14 @@
 from django.urls import path
 
-from catalog.views import index, BookListView, LiteraryFormatListView, AuthorListView, BookDetailView, \
-    test_session_view, AuthorDetailView
+from catalog.views import (
+    index,
+    BookListView,
+    LiteraryFormatListView,
+    AuthorListView,
+    BookDetailView,
+    AuthorDetailView,
+    test_session_view,
+)
 
 urlpatterns = [
     path("", index, name="index"),

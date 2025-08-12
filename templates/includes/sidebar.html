@@ -4,11 +4,14 @@
       User: {{ user.username }}
     </li>
     <li>
-      <a href="{% url 'accounts:logout' %}">Logout</a>
+      <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Logout">
+      </form>
     </li>
   {% else %}
     <li>
-      <a href="{% url 'accounts:login' %}">Login</a>
+      <a href="{% url 'login' %}">Login</a>
     </li>
   {% endif %} 
   <br>

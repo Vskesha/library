@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "debug_toolbar",
     "catalog",
-    "accounts",
 ]
 
 MIDDLEWARE = [
@@ -134,3 +133,5 @@ AUTH_USER_MODEL = "catalog.Author"
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
+
+LOGIN_REDIRECT_URL = "/catalog/"

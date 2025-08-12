@@ -47,3 +47,10 @@ class BookDetailView(LoginRequiredMixin, generic.DetailView):
 class AuthorDetailView(LoginRequiredMixin, generic.DetailView):
     model = Author
     queryset = Author.objects.prefetch_related("books", "books__format")
+
+
+def test_session_view(request: HttpRequest) -> HttpResponse:
+    return HttpResponse(
+        "<h1>Test Session</h1>"
+        f"<h4>Session data: {request.session['book']}</h4>"
+    )
