@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpRequest, HttpResponse, Http404
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import generic
 
 from .models import Author, Book, LiteraryFormat
@@ -28,6 +29,12 @@ class LiteraryFormatListView(LoginRequiredMixin, generic.ListView):
     template_name = "catalog/literary_format_list.html"
     context_object_name = "literary_format_list"
 
+
+class LiteraryFormatCreateView(LoginRequiredMixin, generic.CreateView):
+    model = LiteraryFormat
+    fields = "__all__"
+    success_url = reverse_lazy("catalog:literary-format-list")
+    template_name = "catalog/literary_format_form.html"
 
 class BookListView(LoginRequiredMixin, generic.ListView):
     model = Book
