@@ -5,6 +5,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
+from .forms import AuthorCreationForm
 from .models import Author, Book, LiteraryFormat
 
 
@@ -74,3 +75,8 @@ def test_session_view(request: HttpRequest) -> HttpResponse:
         "<h1>Test Session</h1>"
         f"<h4>Session data: {request.session['book']}</h4>"
     )
+
+
+class AuthorCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Author
+    form_class = AuthorCreationForm
