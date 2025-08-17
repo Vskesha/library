@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from .forms import AuthorCreationForm
+from .forms import AuthorCreationForm, BookForm
 from .models import Author, Book, LiteraryFormat
 
 
@@ -50,10 +50,21 @@ class LiteraryFormatDeleteView(LoginRequiredMixin, generic.DeleteView):
     template_name = "catalog/literary_format_confirm_delete.html"
     success_url = reverse_lazy("catalog:literary-format-list")
 
+
 class BookListView(LoginRequiredMixin, generic.ListView):
     model = Book
     queryset = Book.objects.select_related("format")
-    paginate_by = 10
+    paginate_by = 2
+
+
+class BookCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Book
+    form_class = BookForm
+
+
+class BookUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Book
+    form_class = BookForm
 
 
 class AuthorListView(LoginRequiredMixin, generic.ListView):
